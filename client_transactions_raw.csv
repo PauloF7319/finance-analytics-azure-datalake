@@ -1,0 +1,6 @@
+transaction_id,customer_name,amount,date,status
+T001,joao Silva,1250.50,2024/03/15,confirmed
+T002,MARIA oliveira,,15-03-2024,pending
+T003,carlos Souza,750.00,2024.03.16,
+T004,,3200.00,16/03/24,error
+T005,ana PAULA,150.25,2024-03-17,confirmed
