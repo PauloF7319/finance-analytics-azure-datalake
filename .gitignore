@@ -1,0 +1,11 @@
+# Ignorar dados locais
+data_lake/
+
+# Ignorar ambientes virtuais Python
+venv/
+.venv/
+__pycache__/
+
+# Ignorar arquivos de sistema e temporários
+.DS_Store
+.env

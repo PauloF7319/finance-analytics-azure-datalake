@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  # Serviço 1: O Banco de Dados
+  postgres:
+    image: postgres:15
+    container_name: finance_dw_postgres
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=finance_pass
+      - POSTGRES_DB=finance_analytics
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  # Serviço 2: A sua API (O Leão)
+  credit-api:
+    image: tiangolo/uvicorn-gunicorn-fastapi:python3.9
+    container_name: source_credit_api
+    volumes:
+      - ./src/api:/app
+    ports:
+      - "8000:80"
+
+# Esta seção fica no final, sem espaços no início
+volumes:
+  postgres_data:
