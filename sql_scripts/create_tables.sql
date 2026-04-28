@@ -1,16 +1,11 @@
--- Criação da tabela de aplicações de crédito (Source of Truth)
--- Este script define a estrutura para a nossa camada de Serving/Gold futuramente
+-- Limpando para garantir a nova estrutura
+DROP TABLE IF EXISTS silver_credit_data;
 
-CREATE TABLE IF NOT EXISTS credit_applications (
-    id SERIAL PRIMARY KEY,
-    client_name VARCHAR(100) NOT NULL,
-    document_id VARCHAR(20) UNIQUE NOT NULL,
-    requested_amount DECIMAL(12, 2) NOT NULL,
-    application_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    credit_score INTEGER,
-    status VARCHAR(20) -- Approved, Denied, Under Review
+CREATE TABLE silver_credit_data (
+    document_id VARCHAR(50) PRIMARY KEY,
+    client_name VARCHAR(100),
+    region VARCHAR(50), -- Nova coluna estratégica
+    credit_score INT,
+    requested_amount NUMERIC(20, 5), -- Precisão financeira de 5 casas
+    processed_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
-
--- Comentário para o recrutador:
--- 'requested_amount' usa DECIMAL para precisão financeira.
--- 'document_id' possui restrição UNIQUE para evitar duplicidade de registros.
