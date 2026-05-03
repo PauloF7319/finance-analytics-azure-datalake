@@ -1,53 +1,153 @@
-# 🦁 Project: Finance Analytics - The "Lion" Pipeline
+🦁 Finance Analytics – Data Engineering Platform with ML-driven Risk Scoring
 
-This project demonstrates a production-grade data ecosystem engineered for high-security environments, specifically aligned with the **Government Digital and Data Profession Capability Framework**.
+This project demonstrates a complete end-to-end Data Engineering platform, designed to simulate a real-world financial data environment, with a strong focus on data governance, scalability, and analytical reliability.
 
-## 🏛️ Architectural Evolution & Decision Record
+It combines data ingestion, transformation pipelines, machine learning, and dashboarding into a unified architecture.
 
-### ☁️ Phase 1: Azure Cloud Validation
-Initially designed for **Microsoft Azure** to implement enterprise-level standards:
-*   **Storage**: Azure Data Lake Storage Gen2 (Tiers: raw, processed, curated).
-*   **Security**: Azure Key Vault for secret management.
-*   **Compute**: Azure Databricks for distributed processing.
+🎯 Business Context
 
-### 🚀 Phase 2: Strategic Pivot (Local-First & Cost Optimisation)
-To maintain high-velocity development with zero operational overhead, the stack transitioned to a **Dockerised environment**. This pivot reflects a real-world engineering challenge: maximising resource efficiency while maintaining full cloud-native compatibility.
+This solution simulates a credit risk monitoring platform, where financial data from multiple sources is processed, standardised, and enriched to support risk analysis and decision-making.
 
-### 💎 Phase 3: Silver Layer & Financial Governance
-The transformation from **'raw'** to **'processed'** implements rigorous industry standards for data handling:
-*   **🛡️ Data Masking & PII Security**: Integrated custom anonymisation logic to protect sensitive customer data (Names and Document IDs), ensuring strict compliance with **GDPR** and Information Assurance protocols.
-*   **🔢 Financial Precision**: Systematic rounding to **5 decimal places** for all currency values, catering to high-precision banking product requirements.
-*   **💾 Apache Parquet Optimisation**: Transitioned from text-based formats to **Parquet** (columnar storage) for superior performance and compression.
-*   **✅ Deduplication**: Implemented logic to handle conflicting records, ensuring a "Single Source of Truth."
+The platform enables:
 
----
+Identification of high-risk loans
+Portfolio risk monitoring
+Data-driven decision support through predictive modelling
+Analytical consumption via dashboards
+🏗️ Architecture Overview
 
-## 🛠️ Tech Stack & Libraries
-*   **Languages**: Python 3.12 (Primary), SQL.
-*   **Libraries**: 
-    *   `Pandas` & `NumPy`: For complex data manipulation.
-    *   `PyArrow`: High-performance Parquet engine.
-    *   `Scikit-Learn`: Implementation of Machine Learning models.
-    *   `FastAPI`: Simulating Core Banking API systems.
-*   **Data Storage**: Apache Parquet, PostgreSQL (Data Warehouse), JSON, CSV.
-*   **DevOps & Infrastructure**: Docker, Docker Compose, GitHub Actions (CI/CD).
+The platform follows a layered Data Lake architecture:
 
-## 🤖 Machine Learning Integration
-The **'curated'** layer incorporates a **Random Forest Classifier** to automate risk assessment:
-*   **Prototyping**: Developed an automated risk-scoring model that evaluates creditworthiness.
-*   **Deployment**: The model processes the Silver-tier data to generate probability scores, enabling data-driven executive decisions.
-*   **Validation**: Performed row-level SQL audits to confirm model accuracy against business thresholds.
+Bronze (Raw) → Silver (Processed) → Gold (Curated)
+🔹 Bronze Layer (Raw Ingestion)
+Multi-source ingestion (API + files)
+Formats: CSV, JSON, XLSX
+Raw, unprocessed data storage
+🔹 Silver Layer (Processing & Standardisation)
+Data cleansing and transformation
+Deduplication across sources
+Data masking (PII protection aligned with GDPR principles)
+Standardisation of schemas and formats
+Conversion to Apache Parquet for performance optimisation
+🔹 Gold Layer (Curated & Analytics)
+Business-ready datasets
+Aggregations and KPIs
+Integration with Machine Learning outputs
+Optimised for dashboards and reporting
+⚙️ Machine Learning Pipeline (Risk Scoring)
 
-## 📊 Business Intelligence & Insights
-The pipeline delivers a high-fidelity executive dashboard with the following KPIs:
-*   **Total Loan Volume**: £47.22M processed and validated.
-*   **Avg Risk Probability**: 35.28% (Calculated via ML inference).
-*   **High-Risk Alerts**: 428 records identified for proactive intervention.
+The platform includes a predictive analytics component to simulate credit risk assessment.
 
-## 📈 Pipeline Status
-- [x] **'raw'** (Bronze) 🟢
-- [x] **'processed'** (Silver) 🟢
-- [x] **'curated'** (Gold) & Analytics 🟢 🦁
+✔ Model
+Algorithm: Random Forest Classifier
+Objective: Predict probability of loan default risk
+✔ Feature Engineering
+Age
+Annual Income
+Loan Amount
+Credit Score
+Employment Years
+✔ Pipeline Flow
+Extract processed data from Bronze layer
+Prepare features and target variable
+Train/test split (80/20)
+Train model
+Evaluate performance (accuracy)
+Generate probability-based risk scores
+Persist results into Gold layer
+✔ Output
+probability_score → risk likelihood
+prediction_label → classification (safe / high risk)
+📊 Dashboard & Analytics
 
----
-*Developed for Portfolio - Data Engineering & Software Development Standards*
+The curated data layer feeds analytical dashboards that provide:
+
+Portfolio Risk Index
+Active Risk Alerts
+Total Exposure
+High-risk loan distribution
+
+👉 The dashboard enables data-driven exploration and executive-level insights, simulating real financial reporting environments.
+
+🛠️ Technology Stack
+🔹 Core
+Python 3.12
+SQL / PostgreSQL (Data Warehouse)
+🔹 Data Processing
+Pandas
+PyArrow (Parquet engine)
+Openpyxl
+🔹 Machine Learning
+Scikit-learn
+🔹 Data Architecture
+Data Lake (Bronze / Silver / Gold)
+Apache Parquet
+🔹 Backend / Simulation
+FastAPI (API-based ingestion simulation)
+🔹 Infrastructure
+Docker & Docker Compose
+🔐 Data Governance & Design Principles
+
+This project was built with strong emphasis on:
+
+Data masking and privacy (GDPR-aligned)
+Data consistency and reliability
+Deduplication and “single source of truth”
+Financial precision (controlled rounding rules)
+Auditability and reproducibility
+⚖️ Engineering Decisions & Trade-offs
+☁️ Cloud vs Local
+
+Initially designed for Azure, the architecture was migrated to a Docker-based local environment to:
+
+Eliminate cloud costs during development
+Enable faster iteration cycles
+Maintain portability to cloud platforms (AWS / Azure)
+📦 Storage Format
+
+Migrated to Apache Parquet to:
+
+Improve performance (columnar storage)
+Reduce storage footprint
+Optimise analytical queries
+🧠 ML Integration Strategy
+
+Rather than building a standalone ML system, the model was:
+
+Embedded into the data pipeline
+Integrated into the Gold layer
+Designed to support downstream analytics
+
+👉 This reflects real-world patterns where ML supports data products rather than existing in isolation.
+
+🚀 Key Highlights
+End-to-end data platform (ingestion → analytics)
+Hybrid ingestion (API + batch files)
+ML-driven risk scoring integrated into data pipelines
+Strong focus on data governance and reliability
+Containerised architecture for reproducibility
+Designed with real-world financial use cases in mind
+📌 Future Improvements
+Model optimisation and hyperparameter tuning
+Model evaluation expansion (precision, recall, ROC-AUC)
+Pipeline orchestration (e.g., Airflow)
+Monitoring and logging
+Cloud deployment (AWS / Azure)
+▶️ How to Run
+docker-compose up --build
+
+Then:
+
+Run ingestion pipelines
+Execute transformation scripts
+Run ML pipeline
+Access curated data for analytics
+🧠 Final Note
+
+This project reflects a Data Engineering mindset applied to real-world problems, combining:
+
+Data pipelines
+Machine learning integration
+Analytical delivery
+
+The focus is not only on building pipelines, but on delivering reliable, governed, and actionable data solutions.
