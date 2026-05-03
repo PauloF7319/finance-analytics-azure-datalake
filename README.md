@@ -1,41 +1,53 @@
-# Finance Analytics - Data Lake Architecture & Engineering 🦁
+# 🦁 Project: Finance Analytics - The "Lion" Pipeline
 
-This repository demonstrates a complete end-to-end Data Engineering ecosystem, focused on scalability, financial precision, and data privacy.
+This project demonstrates a production-grade data ecosystem engineered for high-security environments, specifically aligned with the **Government Digital and Data Profession Capability Framework**.
 
-## 🏗️ Architectural Evolution & Decision Record
+## 🏛️ Architectural Evolution & Decision Record
 
 ### ☁️ Phase 1: Azure Cloud Validation
 Initially designed for **Microsoft Azure** to implement enterprise-level standards:
-* **Storage:** Azure Data Lake Storage Gen2 (Tiers: raw, processed, curated).
-* **Security:** Azure Key Vault for secret management.
-* **Compute:** Azure Databricks for distributed processing.
+*   **Storage**: Azure Data Lake Storage Gen2 (Tiers: raw, processed, curated).
+*   **Security**: Azure Key Vault for secret management.
+*   **Compute**: Azure Databricks for distributed processing.
 
-### 🚀 Phase 2: Strategic Pivot (Local-First & Cost Optimization)
-To maintain high-velocity development with zero operational overhead, the stack was transitioned to a **Dockerized environment**. This pivot reflects a real-world engineering challenge: maximizing resource efficiency without losing cloud compatibility.
+### 🚀 Phase 2: Strategic Pivot (Local-First & Cost Optimisation)
+To maintain high-velocity development with zero operational overhead, the stack transitioned to a **Dockerised environment**. This pivot reflects a real-world engineering challenge: maximising resource efficiency while maintaining full cloud-native compatibility.
 
 ### 💎 Phase 3: Silver Layer & Financial Governance
-The transformation from `01-bronze-raw` to `02-silver-processed` implements rigorous industry standards:
+The transformation from **'raw'** to **'processed'** implements rigorous industry standards for data handling:
+*   **🛡️ Data Masking & PII Security**: Integrated custom anonymisation logic to protect sensitive customer data (Names and Document IDs), ensuring strict compliance with **GDPR** and Information Assurance protocols.
+*   **🔢 Financial Precision**: Systematic rounding to **5 decimal places** for all currency values, catering to high-precision banking product requirements.
+*   **💾 Apache Parquet Optimisation**: Transitioned from text-based formats to **Parquet** (columnar storage) for superior performance and compression.
+*   **✅ Deduplication**: Implemented logic to handle conflicting records, ensuring a "Single Source of Truth."
 
-* **🛡️ Data Masking & PII Security:** Integrated custom anonymization logic to protect sensitive customer data (Names and Document IDs), ensuring compliance with **GDPR** standards even in analytical environments.
-* **🔢 Financial Precision:** Systematic rounding to **5 decimal places** for all currency values, catering to high-precision FX and banking product requirements.
-* **💾 Apache Parquet Optimization:** Transitioned from text-based formats to **Parquet**, leveraging columnar storage for superior compression and significant performance gains.
-* **✅ Deduplication:** Implemented logic to handle conflicting records across different source systems, ensuring a "Single Source of Truth."
+---
 
-## 🛠️ Tech Stack
-* **Languages:** Python 3.12 (venv isolated)
-* **Data Storage & Formats:** Apache Parquet (Standard for Big Data), JSON, CSV, XLSX.
-* **Data Handling:** Pandas, PyArrow (Parquet engine), Openpyxl.
-* **API Engine:** FastAPI (Simulating Core Banking systems).
-* **Database:** PostgreSQL (Operating as the Data Warehouse).
-* **Containerization:** Docker & Docker Compose.
+## 🛠️ Tech Stack & Libraries
+*   **Languages**: Python 3.12 (Primary), SQL.
+*   **Libraries**: 
+    *   `Pandas` & `NumPy`: For complex data manipulation.
+    *   `PyArrow`: High-performance Parquet engine.
+    *   `Scikit-Learn`: Implementation of Machine Learning models.
+    *   `FastAPI`: Simulating Core Banking API systems.
+*   **Data Storage**: Apache Parquet, PostgreSQL (Data Warehouse), JSON, CSV.
+*   **DevOps & Infrastructure**: Docker, Docker Compose, GitHub Actions (CI/CD).
 
-## 📂 Project Structure & Governance
-* `data_lake/01-bronze-raw/`: Multimodal ingestion point (JSON, CSV, XLSX).
-* `data_lake/02-silver-processed/`: Cleansed, masked, and standardized data in **Parquet** format.
-* `data_lake/03-gold-curated/`: Business-ready aggregates and KPIs (In development).
-* `src/pipelines/`: ETL/ELT logic for data movement and refinement.
+## 🤖 Machine Learning Integration
+The **'curated'** layer incorporates a **Random Forest Classifier** to automate risk assessment:
+*   **Prototyping**: Developed an automated risk-scoring model that evaluates creditworthiness.
+*   **Deployment**: The model processes the Silver-tier data to generate probability scores, enabling data-driven executive decisions.
+*   **Validation**: Performed row-level SQL audits to confirm model accuracy against business thresholds.
 
-## 🦁 Highlights: The "Lion" Pipeline
-Instead of using static data, this project handles a **Hybrid Ingestion** model, processing real-time API calls alongside legacy filesystem exports. The pipeline is **Source Agnostic**, meaning it can ingest and standardize data regardless of the original format.
+## 📊 Business Intelligence & Insights
+The pipeline delivers a high-fidelity executive dashboard with the following KPIs:
+*   **Total Loan Volume**: £47.22M processed and validated.
+*   **Avg Risk Probability**: 35.28% (Calculated via ML inference).
+*   **High-Risk Alerts**: 428 records identified for proactive intervention.
 
-**Status:** ✅ Ingestion Layer (Bronze) Completed | ✅ Silver Layer (Processing) Completed | 🚧 Developing Gold Layer (Analytics)
+## 📈 Pipeline Status
+- [x] **'raw'** (Bronze) 🟢
+- [x] **'processed'** (Silver) 🟢
+- [x] **'curated'** (Gold) & Analytics 🟢 🦁
+
+---
+*Developed for Portfolio - Data Engineering & Software Development Standards*
